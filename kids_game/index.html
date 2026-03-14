@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="theme-color" content="#1a0533">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Adventure Game! 🌟</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Stars background -->
+<div class="stars"></div>
+
+<!-- ===== HOME SCREEN ===== -->
+<div id="start-screen" class="screen">
+  <div class="game-logo">🌟</div>
+  <h1 class="game-title">Adventure Time!</h1>
+  <p class="game-subtitle">Choose your game and start playing!</p>
+
+  <div class="home-modes">
+    <button class="mode-card mode-adventure" onclick="startGame()">
+      <span class="mode-emoji">🗺️</span>
+      <div class="mode-info">
+        <span class="mode-title">Story Adventures</span>
+        <span class="mode-desc">5 choose-your-own stories</span>
+      </div>
+      <span class="mode-arrow">→</span>
+    </button>
+
+    <button class="mode-card mode-trivia" onclick="startTriviaMode()">
+      <span class="mode-emoji">🧠</span>
+      <div class="mode-info">
+        <span class="mode-title">Trivia Challenge</span>
+        <span class="mode-desc">Animals, Space, Science & more</span>
+      </div>
+      <span class="mode-arrow">→</span>
+    </button>
+
+    <button class="mode-card mode-math" onclick="startMathMode()">
+      <span class="mode-emoji">🔢</span>
+      <div class="mode-info">
+        <span class="mode-title">Math Challenge</span>
+        <span class="mode-desc">Beat the clock with numbers!</span>
+      </div>
+      <span class="mode-arrow">→</span>
+    </button>
+
+    <button class="mode-card mode-trophy" onclick="showAchievements()">
+      <span class="mode-emoji">🏆</span>
+      <div class="mode-info">
+        <span class="mode-title">Trophy Room</span>
+        <span class="mode-desc">See all your endings found</span>
+      </div>
+      <span class="mode-arrow">→</span>
+    </button>
+  </div>
+</div>
+
+<!-- ===== STORY SELECT SCREEN ===== -->
+<div id="select-screen" class="screen">
+  <div class="story-header">
+    <button class="back-btn" onclick="showScreen('start')">← Back</button>
+  </div>
+  <h2 class="select-title">Pick Your Adventure!</h2>
+  <p class="select-subtitle">Each story has multiple secret endings to discover 🔍</p>
+
+  <div class="story-cards">
+    <button class="story-card space" onclick="pickStory('space')">
+      <span class="card-emoji">🚀</span>
+      <div class="card-title">Space Explorer</div>
+      <div class="card-desc">Blast off and discover alien worlds, candy planets, and glowing creatures! 4 endings to find.</div>
+    </button>
+
+    <button class="story-card dragon" onclick="pickStory('dragon')">
+      <span class="card-emoji">🐉</span>
+      <div class="card-title">Dragon Quest</div>
+      <div class="card-desc">Help Ember the dragon find magic fire before winter arrives! 5 endings to find.</div>
+    </button>
+
+    <button class="story-card ocean" onclick="pickStory('ocean')">
+      <span class="card-emoji">🌊</span>
+      <div class="card-title">Ocean Depths</div>
+      <div class="card-desc">Dive deep in your yellow submarine and make amazing ocean friends! 4 endings to find.</div>
+    </button>
+
+    <button class="story-card pirate" onclick="pickStory('pirate')">
+      <span class="card-emoji">🏴‍☠️</span>
+      <div class="card-title">Pirate Adventure</div>
+      <div class="card-desc">Sail the seas as the youngest captain ever and find legendary treasure! 4 endings to find.</div>
+    </button>
+
+    <button class="story-card superhero" onclick="pickStory('superhero')">
+      <span class="card-emoji">🦸</span>
+      <div class="card-title">Superhero Training</div>
+      <div class="card-desc">Discover your superpower and train to save the day! 3 endings to find.</div>
+    </button>
+  </div>
+</div>
+
+<!-- ===== GAME SCREEN (Story Adventure) ===== -->
+<div id="game-screen" class="screen">
+  <!-- Rendered by JS -->
+</div>
+
+<!-- ===== TRIVIA SCREEN (in-adventure + standalone) ===== -->
+<div id="trivia-screen" class="screen">
+  <!-- Rendered by JS -->
+</div>
+
+<!-- ===== TRIVIA MODE SCREEN ===== -->
+<div id="trivia-mode-screen" class="screen">
+  <!-- Rendered by JS -->
+</div>
+
+<!-- ===== MATH MODE SCREEN ===== -->
+<div id="math-mode-screen" class="screen">
+  <!-- Rendered by JS -->
+</div>
+
+<!-- ===== ENDING SCREEN ===== -->
+<div id="ending-screen" class="screen">
+  <!-- Rendered by JS -->
+</div>
+
+<!-- ===== ACHIEVEMENTS SCREEN ===== -->
+<div id="achievements-screen" class="screen">
+  <!-- Rendered by JS -->
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
