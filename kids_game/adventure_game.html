@@ -76,6 +76,16 @@ html, body {
 .mode-math:hover { border-color: #34d399; }
 .mode-trophy { border-color: rgba(251,146,60,0.5); }
 .mode-trophy:hover { border-color: #fb923c; }
+.mode-charades { border-color: rgba(251,146,60,0.5); }
+.mode-charades:hover { border-color: #fb923c; }
+.mode-snake { border-color: rgba(52,211,153,0.5); }
+.mode-snake:hover { border-color: #34d399; }
+.mode-memory { border-color: rgba(96,165,250,0.5); }
+.mode-memory:hover { border-color: #60a5fa; }
+.mode-balloon { border-color: rgba(248,113,113,0.5); }
+.mode-balloon:hover { border-color: #f87171; }
+.mode-reaction { border-color: rgba(251,191,36,0.5); }
+.mode-reaction:hover { border-color: #fbbf24; }
 
 /* ===== STORY SELECT SCREEN ===== */
 #select-screen { background: linear-gradient(160deg, #0d1b4b 0%, #1a0533 60%, #0a2a1a 100%); }
@@ -374,6 +384,104 @@ html, body {
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 2px; }
 
+/* ===== CHARADES ===== */
+#charades-screen { background: linear-gradient(135deg, #1e0a3c 0%, #2d1257 50%, #1a0a2e 100%); }
+.charades-header { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 16px; margin-top: 6px; }
+.charades-timer-val { font-size: 2rem; font-weight: 900; color: #fbbf24; min-width: 60px; text-align: center; }
+.charades-timer-val.urgent { color: #f87171; animation: flash 0.5s ease-in-out infinite; }
+.charades-word-card { background: linear-gradient(135deg, rgba(139,92,246,0.3), rgba(109,40,217,0.4)); border: 2px solid rgba(167,139,250,0.4); border-radius: 24px; padding: 40px 24px; width: 100%; text-align: center; box-shadow: 0 8px 32px rgba(139,92,246,0.3); min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 16px; transition: background 0.3s; }
+.charades-word { font-size: 2.4rem; font-weight: 900; color: #fff; line-height: 1.2; margin-bottom: 10px; transition: opacity 0.2s, transform 0.2s; }
+.charades-category-pill { display: inline-block; padding: 4px 14px; border-radius: 999px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+.charades-category-pill.animals { background: #34d399; color: #064e3b; }
+.charades-category-pill.movies  { background: #f87171; color: #7f1d1d; }
+.charades-category-pill.actions { background: #60a5fa; color: #1e3a8a; }
+.charades-category-pill.silly   { background: #fbbf24; color: #78350f; }
+.charades-tilt-hint { display: flex; gap: 12px; width: 100%; margin-bottom: 14px; }
+.tilt-hint-card { flex: 1; padding: 12px 10px; border-radius: 16px; text-align: center; font-size: 0.85rem; font-weight: 700; line-height: 1.4; }
+.tilt-hint-card.correct-hint { background: rgba(52,211,153,0.15); border: 2px solid rgba(52,211,153,0.4); color: #6ee7b7; }
+.tilt-hint-card.skip-hint { background: rgba(248,113,113,0.15); border: 2px solid rgba(248,113,113,0.4); color: #fca5a5; }
+.tilt-hint-icon { font-size: 1.6rem; display: block; margin-bottom: 4px; }
+.charades-buttons { display: flex; gap: 14px; width: 100%; }
+.btn-charades-skip { flex: 1; padding: 18px 10px; border: none; border-radius: 18px; font-size: 1.1rem; font-weight: 900; cursor: pointer; background: linear-gradient(135deg, #f87171, #ef4444); color: #fff; box-shadow: 0 4px 16px rgba(239,68,68,0.4); transition: transform 0.12s; -webkit-tap-highlight-color: transparent; }
+.btn-charades-correct { flex: 1; padding: 18px 10px; border: none; border-radius: 18px; font-size: 1.1rem; font-weight: 900; cursor: pointer; background: linear-gradient(135deg, #34d399, #10b981); color: #fff; box-shadow: 0 4px 16px rgba(16,185,129,0.4); transition: transform 0.12s; -webkit-tap-highlight-color: transparent; }
+.btn-charades-skip:active, .btn-charades-correct:active { transform: scale(0.95); }
+.charades-cat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; margin-bottom: 24px; }
+.charades-cat-btn { padding: 22px 10px; border: none; border-radius: 18px; font-size: 1.15rem; font-weight: 800; cursor: pointer; color: #fff; transition: transform 0.15s; -webkit-tap-highlight-color: transparent; }
+.charades-cat-btn:active { transform: scale(0.93); }
+.charades-cat-btn.cat-animals { background: linear-gradient(135deg, #34d399, #059669); }
+.charades-cat-btn.cat-movies  { background: linear-gradient(135deg, #f87171, #dc2626); }
+.charades-cat-btn.cat-actions { background: linear-gradient(135deg, #60a5fa, #2563eb); }
+.charades-cat-btn.cat-silly   { background: linear-gradient(135deg, #fbbf24, #d97706); }
+.charades-cat-btn.cat-all     { grid-column: 1 / -1; background: linear-gradient(135deg, #a78bfa, #7c3aed); }
+
+/* ===== SNAKE ===== */
+#snake-screen { background: #0a0a0f; }
+.snake-header { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 10px; }
+.snake-score-box { text-align: center; }
+.snake-score-box .s-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: #6ee7b7; font-weight: 700; }
+.snake-score-box .s-value { font-size: 1.5rem; font-weight: 900; color: #fff; }
+#snake-canvas { border: 3px solid #34d399; border-radius: 8px; box-shadow: 0 0 24px rgba(52,211,153,0.3); display: block; touch-action: none; }
+.snake-canvas-wrap { position: relative; margin: 0 auto; }
+.snake-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.82); display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 8px; text-align: center; padding: 20px; backdrop-filter: blur(4px); }
+.dpad-grid { display: grid; grid-template-columns: repeat(3, 56px); grid-template-rows: repeat(3, 56px); gap: 6px; margin: 12px auto 0; }
+.dpad-btn { width: 56px; height: 56px; border: 2px solid rgba(52,211,153,0.35); border-radius: 12px; background: rgba(52,211,153,0.15); color: #34d399; font-size: 1.4rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.1s, transform 0.1s; -webkit-tap-highlight-color: transparent; }
+.dpad-btn:active { background: rgba(52,211,153,0.35); transform: scale(0.9); }
+.dpad-blank { background: transparent; pointer-events: none; }
+
+/* ===== MEMORY MATCH ===== */
+#memory-screen { background: linear-gradient(135deg, #0f172a, #1e3a5f); }
+.memory-header { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 12px; margin-top: 6px; }
+.memory-stat .m-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: #93c5fd; font-weight: 700; }
+.memory-stat .m-value { font-size: 1.4rem; font-weight: 900; color: #fff; }
+.memory-grid { display: grid; gap: 8px; width: 100%; }
+.memory-grid.easy { grid-template-columns: repeat(4, 1fr); }
+.memory-grid.hard { grid-template-columns: repeat(4, 1fr); }
+.memory-card { aspect-ratio: 1; perspective: 600px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.memory-card-inner { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 0.4s ease; border-radius: 12px; }
+.memory-card.flipped .memory-card-inner, .memory-card.matched .memory-card-inner { transform: rotateY(180deg); }
+.memory-card-front, .memory-card-back { position: absolute; inset: 0; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.memory-card-front { background: linear-gradient(135deg, #1e40af, #1d4ed8); border: 2px solid rgba(96,165,250,0.3); }
+.memory-card-back { background: linear-gradient(135deg, #1e3a5f, #0f2a4a); border: 2px solid rgba(96,165,250,0.2); transform: rotateY(180deg); }
+.memory-card.matched .memory-card-front { background: linear-gradient(135deg, #065f46, #047857); border-color: rgba(52,211,153,0.5); box-shadow: 0 0 12px rgba(52,211,153,0.4); }
+.memory-diff-btn { display: block; width: 100%; padding: 20px; margin-bottom: 14px; border: none; border-radius: 18px; font-size: 1.1rem; font-weight: 800; cursor: pointer; color: #fff; transition: transform 0.12s; -webkit-tap-highlight-color: transparent; }
+.memory-diff-btn:active { transform: scale(0.95); }
+.memory-diff-btn.easy { background: linear-gradient(135deg, #34d399, #059669); }
+.memory-diff-btn.hard { background: linear-gradient(135deg, #f87171, #dc2626); }
+
+/* ===== BALLOON POP ===== */
+#balloon-screen { background: linear-gradient(180deg, #0c1445 0%, #1a237e 50%, #283593 100%); overflow: hidden; }
+.balloon-hud { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 10px; }
+.balloon-hud-stat { text-align: center; background: rgba(0,0,0,0.3); border-radius: 12px; padding: 8px 14px; }
+.balloon-hud-stat .b-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: #fca5a5; font-weight: 700; }
+.balloon-hud-stat .b-value { font-size: 1.4rem; font-weight: 900; color: #fff; }
+.balloon-hud-stat .b-value.combo { color: #fbbf24; }
+#balloon-field { position: relative; width: 100%; height: 420px; overflow: hidden; border-radius: 16px; background: rgba(255,255,255,0.02); touch-action: none; }
+.balloon-item { position: absolute; font-size: 2.4rem; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; animation: balloonRise linear forwards; }
+@keyframes balloonRise { from { bottom: -60px; } to { bottom: 110%; } }
+.balloon-item.popped { animation: balloonPop 0.35s ease-out forwards !important; pointer-events: none; }
+@keyframes balloonPop { 0% { transform: scale(1); opacity: 1; } 40% { transform: scale(1.6); opacity: 0.8; } 100% { transform: scale(0.1); opacity: 0; } }
+.balloon-score-float { position: absolute; font-size: 1rem; font-weight: 900; color: #fbbf24; text-shadow: 0 2px 6px rgba(0,0,0,0.6); pointer-events: none; animation: floatUp 0.9s ease-out forwards; z-index: 20; }
+@keyframes floatUp { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-60px); } }
+
+/* ===== REACTION TEST ===== */
+#reaction-screen { background: #0f172a; }
+#reaction-pad { flex: 1; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; transition: background 0.2s; text-align: center; padding: 24px; min-height: 320px; border-radius: 20px; margin: 12px 0; }
+#reaction-pad.waiting  { background: linear-gradient(135deg, #991b1b, #7f1d1d); }
+#reaction-pad.ready    { background: linear-gradient(135deg, #065f46, #064e3b); }
+#reaction-pad.toosoon  { background: linear-gradient(135deg, #92400e, #78350f); }
+#reaction-pad.idle     { background: linear-gradient(135deg, #1e293b, #0f172a); border: 2px dashed rgba(255,255,255,0.15); }
+.reaction-emoji-big { font-size: 4.5rem; display: block; margin-bottom: 12px; }
+.reaction-main-text { font-size: 1.8rem; font-weight: 900; color: #fff; margin-bottom: 8px; }
+.reaction-sub-text { font-size: 1rem; color: rgba(255,255,255,0.7); }
+.reaction-result-row { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.07); border-radius: 10px; padding: 10px 16px; font-size: 1rem; color: #e5e7eb; margin-bottom: 6px; }
+.reaction-ms { font-weight: 900; color: #fbbf24; }
+
+/* ===== NEW TRIVIA CATEGORY BUTTONS ===== */
+.cat-movies { border-color: rgba(244,63,94,0.5) !important; }
+.cat-movies:hover { border-color: #f43f5e !important; }
+.cat-disney { border-color: rgba(6,182,212,0.5) !important; }
+.cat-disney:hover { border-color: #06b6d4 !important; }
+
   </style>
 </head>
 <body>
@@ -403,6 +511,31 @@ html, body {
       <div class="mode-info"><span class="mode-title">Trophy Room</span><span class="mode-desc">See all your endings found</span></div>
       <span class="mode-arrow">→</span>
     </button>
+    <button class="mode-card mode-charades" onclick="startCharades()">
+      <span class="mode-emoji">🎭</span>
+      <div class="mode-info"><span class="mode-title">Charades</span><span class="mode-desc">Tilt phone to guess words!</span></div>
+      <span class="mode-arrow">→</span>
+    </button>
+    <button class="mode-card mode-snake" onclick="startSnakeGame()">
+      <span class="mode-emoji">🐍</span>
+      <div class="mode-info"><span class="mode-title">Snake</span><span class="mode-desc">Eat food, don't crash!</span></div>
+      <span class="mode-arrow">→</span>
+    </button>
+    <button class="mode-card mode-memory" onclick="startMemory()">
+      <span class="mode-emoji">🃏</span>
+      <div class="mode-info"><span class="mode-title">Memory Match</span><span class="mode-desc">Find all the pairs!</span></div>
+      <span class="mode-arrow">→</span>
+    </button>
+    <button class="mode-card mode-balloon" onclick="startBalloonPop()">
+      <span class="mode-emoji">🎈</span>
+      <div class="mode-info"><span class="mode-title">Balloon Pop</span><span class="mode-desc">Pop 'em before they escape!</span></div>
+      <span class="mode-arrow">→</span>
+    </button>
+    <button class="mode-card mode-reaction" onclick="startReaction()">
+      <span class="mode-emoji">⚡</span>
+      <div class="mode-info"><span class="mode-title">Reaction Test</span><span class="mode-desc">How fast can you tap?</span></div>
+      <span class="mode-arrow">→</span>
+    </button>
   </div>
 </div>
 <div id="select-screen" class="screen">
@@ -425,6 +558,11 @@ html, body {
 <div id="math-mode-screen" class="screen"></div>
 <div id="ending-screen" class="screen"></div>
 <div id="achievements-screen" class="screen"></div>
+<div id="charades-screen" class="screen"></div>
+<div id="snake-screen" class="screen"></div>
+<div id="memory-screen" class="screen"></div>
+<div id="balloon-screen" class="screen"></div>
+<div id="reaction-screen" class="screen"></div>
 <script>
 /* ===================================================
    ADVENTURE GAME - CHOOSE YOUR OWN STORY!
@@ -984,7 +1122,12 @@ const screens = {
   triviaMode: document.getElementById('trivia-mode-screen'),
   mathMode: document.getElementById('math-mode-screen'),
   ending: document.getElementById('ending-screen'),
-  achievements: document.getElementById('achievements-screen')
+  achievements: document.getElementById('achievements-screen'),
+  charades:     document.getElementById('charades-screen'),
+  snake:        document.getElementById('snake-screen'),
+  memory:       document.getElementById('memory-screen'),
+  balloon:      document.getElementById('balloon-screen'),
+  reaction:     document.getElementById('reaction-screen')
 };
 
 // ===== SCREEN NAVIGATION =====
@@ -1237,7 +1380,9 @@ const TRIVIA_CATEGORIES = {
   space:   { label: '🚀 Space',          emoji: '🚀', filter: (q) => q.cat === 'space' },
   science: { label: '🔬 Science',        emoji: '🔬', filter: (q) => q.cat === 'science' },
   ocean:   { label: '🌊 Ocean',          emoji: '🌊', filter: (q) => q.cat === 'ocean' },
-  fun:     { label: '😄 Fun Facts',      emoji: '😄', filter: (q) => q.cat === 'fun' }
+  fun:     { label: '😄 Fun Facts',      emoji: '😄', filter: (q) => q.cat === 'fun' },
+  movies:  { label: '🎬 Animated Movies', emoji: '🎬', filter: (q) => q.cat === 'movies' },
+  disney:  { label: '🏰 Disney Parks',   emoji: '🏰', filter: (q) => q.cat === 'disney' }
 };
 
 // Tag existing trivia with categories
@@ -1269,7 +1414,50 @@ const EXTRA_TRIVIA = [
   { q: "The Eiffel Tower grows in summer by how much?", a: 2, choices: ["1 millimeter", "1 centimeter", "About 6 inches (15cm)!"], fact: "Heat makes metal expand — the Eiffel Tower grows up to 6 inches taller on hot summer days! 🗼", cat: 'fun' }
 ];
 
-const ALL_TRIVIA = [...TRIVIA_TAGGED, ...EXTRA_TRIVIA];
+// ===== NEW TRIVIA: MOVIES + DISNEY + MORE ANIMALS =====
+const NEW_TRIVIA = [
+  // Animated Movies
+  { q: "What are the names of the two sisters in Frozen?", a: 1, choices: ["Anna and Aurora", "Anna and Elsa", "Elsa and Emma"], fact: "Elsa's ice powers are triggered by strong emotions — her sister Anna's love is what ultimately saves her! ❄️", cat: 'movies' },
+  { q: "What song does Elsa sing while building her ice castle?", a: 0, choices: ["Let It Go", "Do You Want to Build a Snowman", "For the First Time in Forever"], fact: "Let It Go was performed by Idina Menzel and won the Academy Award for Best Original Song! 🎶", cat: 'movies' },
+  { q: "In Finding Nemo, what type of fish is Nemo?", a: 2, choices: ["Blue tang", "Goldfish", "Clownfish"], fact: "Clownfish actually live inside sea anemones for protection — just like Nemo! 🐠", cat: 'movies' },
+  { q: "What does Dory keep forgetting in Finding Nemo?", a: 1, choices: ["How to swim", "Everything — she has short-term memory loss", "Where the ocean is"], fact: "Blue tangs like Dory can grow up to 12 inches long in the wild! 🐟", cat: 'movies' },
+  { q: "What is Simba's father's name in The Lion King?", a: 0, choices: ["Mufasa", "Scar", "Rafiki"], fact: "The Lion King was inspired by Shakespeare's play Hamlet! 🦁", cat: 'movies' },
+  { q: "In Toy Story, what is the name of the boy who owns Woody and Buzz?", a: 1, choices: ["Tim", "Andy", "Alex"], fact: "Toy Story was the very first fully computer-animated feature film, released in 1995! 🎬", cat: 'movies' },
+  { q: "In Encanto, what is special about Mirabel compared to her family?", a: 0, choices: ["She has no magical gift", "She can fly", "She can talk to animals"], fact: "Every member of the Madrigal family gets a magical room in the Casita when they receive their gift! 🏡", cat: 'movies' },
+  { q: "In Inside Out, which emotion wears glasses and loves facts?", a: 1, choices: ["Joy", "Sadness", "Fear"], fact: "Inside Out was Pixar's first film with two female lead characters — Joy and Sadness! 😊", cat: 'movies' },
+  { q: "In the movie Up, what does Carl use to make his house fly?", a: 2, choices: ["Jet engines", "A giant kite", "Thousands of balloons"], fact: "Scientists calculated you'd need about 9.4 million real balloons to lift a house like Carl's! 🎈", cat: 'movies' },
+  { q: "What is the name of the super family in The Incredibles?", a: 0, choices: ["The Parr family", "The Super family", "The Incredible family"], fact: "Each Parr family member's power reflects their personality — Violet's invisibility shows her shyness! 🦸", cat: 'movies' },
+  { q: "In Shrek, what land does Shrek live near?", a: 1, choices: ["Narnia", "Far Far Away", "Neverland"], fact: "The Shrek series features many fairy tale characters from different stories all living in the same world! 🧅", cat: 'movies' },
+  { q: "In Zootopia, what animal is Officer Judy Hopps?", a: 2, choices: ["A fox", "A mouse", "A rabbit"], fact: "Zootopia features over 64 different animal species, each with their own unique neighborhood! 🐰", cat: 'movies' },
+  { q: "In Ratatouille, what does Remy the rat dream of doing?", a: 0, choices: ["Becoming a chef in Paris", "Opening his own cheese shop", "Becoming a food critic"], fact: "The restaurant in Ratatouille is called Gusteau's, named after Remy's idol chef Auguste Gusteau! 🍽️", cat: 'movies' },
+  { q: "In Coco, what holiday is the movie set during?", a: 1, choices: ["Halloween", "Día de los Muertos (Day of the Dead)", "Christmas"], fact: "Día de los Muertos is a real Mexican holiday where families honor loved ones who have passed away! 🌺", cat: 'movies' },
+  { q: "In Moana, what does Moana have to restore to save her island?", a: 2, choices: ["A magic sword", "A sacred flower", "The heart of Te Fiti"], fact: "Moana is based on the real Polynesian tradition of wayfinding — navigating across the ocean by stars! ⭐", cat: 'movies' },
+  // Disney Parks
+  { q: "What is the famous castle at Magic Kingdom in Walt Disney World called?", a: 0, choices: ["Cinderella Castle", "Sleeping Beauty Castle", "Belle's Castle"], fact: "Cinderella Castle is 189 feet tall — taller than the Statue of Liberty's pedestal! 🏰", cat: 'disney' },
+  { q: "What is the castle at the original Disneyland in California called?", a: 2, choices: ["Cinderella Castle", "Rapunzel's Tower", "Sleeping Beauty Castle"], fact: "Sleeping Beauty Castle was one of the very first things Walt Disney designed for Disneyland! 🏰", cat: 'disney' },
+  { q: "Which Disney Park ride takes you through space on a rocket in the dark?", a: 1, choices: ["Buzz Lightyear Astro Blasters", "Space Mountain", "Mission: SPACE"], fact: "Space Mountain opened in 1975 and the top speed is only 28 mph — it just feels faster in the dark! 🚀", cat: 'disney' },
+  { q: "The Haunted Mansion says it has how many happy haunts?", a: 0, choices: ["999", "1000", "666"], fact: "The Imagineers wanted 1,000 ghosts but changed to 999 to 'leave room for you' to join them! 👻", cat: 'disney' },
+  { q: "Which classic ride features the song 'Yo Ho, A Pirate's Life for Me'?", a: 2, choices: ["The Jungle Cruise", "Splash Mountain", "Pirates of the Caribbean"], fact: "Pirates of the Caribbean was the last attraction Walt Disney personally helped design! ☠️", cat: 'disney' },
+  { q: "What song plays on repeat on It's a Small World?", a: 1, choices: ["Zip-a-Dee-Doo-Dah", "It's a Small World (After All)", "When You Wish Upon a Star"], fact: "It's a Small World features dolls representing children from 100 countries around the world! 🌍", cat: 'disney' },
+  { q: "What does EPCOT stand for?", a: 2, choices: ["Every Person Comes Out Tired", "Exciting Park Celebrating Our Times", "Experimental Prototype Community of Tomorrow"], fact: "Walt Disney originally planned EPCOT as an actual futuristic city where real people would live! 🏙️", cat: 'disney' },
+  { q: "What year did the original Disneyland open?", a: 0, choices: ["1955", "1960", "1965"], fact: "On opening day July 17, 1955, so many guests showed up that the asphalt actually melted! 🌞", cat: 'disney' },
+  { q: "Which ride drops guests 13 stories in a haunted hotel?", a: 1, choices: ["Mission: SPACE", "Tower of Terror", "Splash Mountain"], fact: "Tower of Terror is themed to The Twilight Zone TV series — a classic spooky show! 🏨", cat: 'disney' },
+  { q: "Disney's Animal Kingdom is the largest Disney theme park — how big is it?", a: 2, choices: ["100 acres", "300 acres", "About 580 acres"], fact: "Animal Kingdom is so big it could fit all the other Walt Disney World parks inside it with room to spare! 🦁", cat: 'disney' },
+  { q: "What are the small trains called that travel around Disneyland and Magic Kingdom?", a: 1, choices: ["The Disney Flyer", "The Walt Disney Railroad", "The Magic Express"], fact: "Walt Disney was a huge train fan and had a miniature railroad in his own backyard before building Disneyland! 🚂", cat: 'disney' },
+  { q: "What iconic Disney theme park opened in Florida in 1971?", a: 0, choices: ["Walt Disney World", "Disneyland", "EPCOT"], fact: "Walt Disney World is so big it's roughly the same size as San Francisco! 🌴", cat: 'disney' },
+  // More Animals
+  { q: "How do male emperor penguins keep their eggs warm?", a: 0, choices: ["They balance the egg on their feet under a warm belly flap", "They bury them in warm sand", "They sit on them like chickens"], fact: "Male emperor penguins stand in freezing Antarctic blizzards for months without eating to keep the egg warm! 🐧", cat: 'animals' },
+  { q: "What do giant pandas eat almost exclusively?", a: 2, choices: ["Fish", "Honey and berries", "Bamboo"], fact: "Giant pandas eat up to 84 pounds of bamboo every single day just to get enough nutrients! 🐼", cat: 'animals' },
+  { q: "What is a baby kangaroo called?", a: 0, choices: ["A joey", "A cub", "A kit"], fact: "When a joey is born it's only the size of a jellybean! It crawls into mom's pouch to keep growing. 🦘", cat: 'animals' },
+  { q: "What is special about the axolotl?", a: 1, choices: ["It can breathe fire", "It can regrow lost limbs and parts of its brain", "It's the only lizard that can fly"], fact: "Axolotls are called 'Mexican walking fish' but they're actually amphibians, not fish! 🦎", cat: 'animals' },
+  { q: "What is the narwhal's long spiral tusk actually made of?", a: 0, choices: ["It's a really long tooth!", "A hollow bone", "Hardened skin"], fact: "The narwhal's tusk can grow up to 10 feet long and has millions of nerve endings! 🦄", cat: 'animals' },
+  { q: "Why are flamingos pink?", a: 1, choices: ["They are born pink", "They get pink pigment from the algae and shrimp they eat", "Their feathers reflect the sunset"], fact: "Baby flamingos are born gray and white! They turn pink only after eating enough pink-pigment-rich food. 🦩", cat: 'animals' },
+  { q: "How does the archerfish catch insects?", a: 2, choices: ["It leaps out of water", "It uses its tail like a net", "It shoots a jet of water to knock bugs off branches"], fact: "Archerfish shoot water jets up to 10 feet with amazing accuracy — even accounting for how water bends light! 🐟", cat: 'animals' },
+  { q: "Which of these is true about the platypus?", a: 2, choices: ["It is a reptile", "It does not lay eggs", "It is a mammal that lays eggs and has a bill like a duck"], fact: "When scientists first saw a platypus specimen, they thought someone was playing a trick on them! 🦆", cat: 'animals' },
+  { q: "What is a group of meerkats called?", a: 0, choices: ["A mob or gang", "A pride", "A colony"], fact: "Meerkats take turns acting as lookout sentinels, standing on their hind legs watching for eagles! 🦡", cat: 'animals' }
+];
+
+const ALL_TRIVIA = [...TRIVIA_TAGGED, ...EXTRA_TRIVIA, ...NEW_TRIVIA];
 
 const tmState = {
   category: 'all',
@@ -1295,6 +1483,8 @@ function startTriviaMode() {
       <button class="category-btn cat-ocean" onclick="launchTrivia('ocean')"><span class="cat-emoji">🌊</span>Ocean</button>
       <button class="category-btn cat-science" onclick="launchTrivia('science')"><span class="cat-emoji">🔬</span>Science</button>
       <button class="category-btn cat-fun" onclick="launchTrivia('fun')"><span class="cat-emoji">😄</span>Fun Facts</button>
+      <button class="category-btn cat-movies" onclick="launchTrivia('movies')"><span class="cat-emoji">🎬</span>Movies</button>
+      <button class="category-btn cat-disney" onclick="launchTrivia('disney')"><span class="cat-emoji">🏰</span>Disney Parks</button>
     </div>
     <p style="font-size:0.85rem;color:#9ca3af;text-align:center">10 questions per round · Learn amazing facts!</p>
   `;
@@ -1614,6 +1804,885 @@ function showMathResults() {
       </div>
     </div>
   `;
+}
+
+// ═══════════════════════════════════════════════════════
+// ===== CHARADES GAME =====
+// ═══════════════════════════════════════════════════════
+
+const CHARADES_WORDS = {
+  animals: [
+    "elephant", "penguin waddling", "cat sleeping", "dog fetching a ball",
+    "monkey swinging", "snake slithering", "frog jumping", "horse galloping",
+    "butterfly flying", "crab walking sideways", "kangaroo hopping",
+    "gorilla beating chest", "parrot talking", "fish swimming", "bear eating honey",
+    "giraffe eating leaves", "lion roaring", "turtle walking slowly",
+    "rabbit hopping", "owl turning head", "flamingo standing on one leg",
+    "hamster running on wheel", "cheetah running fast", "crocodile snapping",
+    "dolphin jumping", "bee buzzing", "squirrel hiding acorns",
+    "peacock showing feathers", "wolf howling at moon", "pig rolling in mud"
+  ],
+  movies: [
+    "Elsa freezing things", "Simba roaring", "Buzz Lightyear flying",
+    "Woody pulling string", "Olaf melting", "Moana sailing",
+    "Wall-E collecting junk", "Nemo swimming in tank", "Dory forgetting things",
+    "Shrek doing a roar", "Donkey talking", "Rapunzel swinging by hair",
+    "Genie granting wishes", "Dumbo flying with ears", "Bambi on ice",
+    "Cinderella losing slipper", "Belle reading a book", "Tarzan swinging on vines",
+    "Timon and Pumbaa eating bugs", "Merida shooting arrow",
+    "Mirabel hugging her family", "Miguel playing guitar", "Joy jumping up and down",
+    "Sadness dragging her feet", "Remy controlling Linguini's hair",
+    "Carl's house floating with balloons", "Lightning McQueen racing",
+    "Stitch causing mischief", "Maui pulling up islands", "Luisa carrying heavy things"
+  ],
+  actions: [
+    "swimming", "flying like a superhero", "eating spaghetti",
+    "playing guitar", "shooting a basketball", "dancing ballet",
+    "rowing a boat", "climbing a mountain", "surfing a wave",
+    "juggling", "hula hooping", "doing cartwheels",
+    "building a sandcastle", "blowing out birthday candles",
+    "opening a giant present", "brushing really long hair",
+    "riding a unicycle", "typing super fast", "sneezing uncontrollably",
+    "laughing so hard you cry", "tip-toeing through a haunted house",
+    "conducting an orchestra", "painting a huge mural",
+    "skipping down the street", "lifting a very heavy weight",
+    "catching a butterfly", "blowing a giant bubble gum bubble",
+    "sliding down a really long slide", "making a huge snowball",
+    "walking a dog that pulls you everywhere"
+  ],
+  silly: [
+    "giant sandwich", "dancing robot", "invisible friend",
+    "flying taco", "talking shoe", "spaghetti hair",
+    "sneeze so big you fly away", "riding a giant snail",
+    "wearing underpants on your head", "hugging a cactus",
+    "angry cloud raining only on you", "backwards-talking parrot",
+    "pizza tree", "shopping cart with a mind of its own",
+    "table that runs away when you try to eat",
+    "living inside a giant bubble", "alarm clock that yells at you",
+    "invisible roller coaster", "magic shoes that make you dance nonstop",
+    "swimming through a pool of jello", "hair that ties itself in knots",
+    "shoes tied together while trying to walk",
+    "trying to eat soup with a fork", "cat herding contest",
+    "catching the wind in a paper bag", "talking to a potato",
+    "elevator music that gets louder and louder",
+    "sleeping on a cloud that slowly shrinks",
+    "chasing your own shadow", "itchy sweater you can't take off"
+  ]
+};
+
+const charadesState = {
+  category: 'all',
+  words: [],
+  currentIndex: 0,
+  score: 0,
+  skipped: 0,
+  timerSeconds: 60,
+  timerInterval: null,
+  orientationGranted: false,
+  tiltCooldown: false
+};
+
+function startCharades() {
+  showScreen('charades');
+  const s = screens.charades;
+  s.innerHTML = `
+    <div style="padding:20px 16px 40px;max-width:480px;margin:0 auto;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;margin-top:6px;">
+        <button class="back-btn" onclick="showScreen('start')">← Back</button>
+        <span class="mode-title-badge">🎭 Charades</span>
+      </div>
+      <div style="text-align:center;margin-bottom:24px;">
+        <div style="font-size:4rem;margin-bottom:10px;">🎭</div>
+        <h2 style="font-size:1.8rem;font-weight:900;color:#e9d5ff;margin-bottom:8px;">Charades!</h2>
+        <p style="color:#c4b5fd;line-height:1.5;">Hold phone flat. Tilt <strong>DOWN</strong> ✅ = Got It!<br>Tilt <strong>UP</strong> ❌ = Skip<br>Or use the buttons below!</p>
+      </div>
+      <div class="charades-cat-grid">
+        <button class="charades-cat-btn cat-animals" onclick="launchCharades('animals')">🐘 Animals</button>
+        <button class="charades-cat-btn cat-movies"  onclick="launchCharades('movies')">🎬 Movies</button>
+        <button class="charades-cat-btn cat-actions" onclick="launchCharades('actions')">🏃 Actions</button>
+        <button class="charades-cat-btn cat-silly"   onclick="launchCharades('silly')">🤪 Silly</button>
+        <button class="charades-cat-btn cat-all"     onclick="launchCharades('all')">🎲 All Categories</button>
+      </div>
+    </div>`;
+}
+
+async function launchCharades(category) {
+  charadesState.category = category;
+  charadesState.score = 0;
+  charadesState.skipped = 0;
+  charadesState.timerSeconds = 60;
+  charadesState.currentIndex = 0;
+  charadesState.tiltCooldown = false;
+
+  let pool = [];
+  if (category === 'all') {
+    Object.values(CHARADES_WORDS).forEach(arr => pool.push(...arr));
+  } else {
+    pool = [...CHARADES_WORDS[category]];
+  }
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  charadesState.words = pool;
+
+  if (typeof DeviceOrientationEvent !== 'undefined' &&
+      typeof DeviceOrientationEvent.requestPermission === 'function') {
+    try {
+      const perm = await DeviceOrientationEvent.requestPermission();
+      charadesState.orientationGranted = (perm === 'granted');
+    } catch (e) { charadesState.orientationGranted = false; }
+  } else {
+    charadesState.orientationGranted = true;
+  }
+
+  if (charadesState.orientationGranted) {
+    window.addEventListener('deviceorientation', charadesHandleOrientation);
+  }
+
+  renderCharadesGame();
+  charadesState.timerInterval = setInterval(() => {
+    charadesState.timerSeconds--;
+    const el = document.getElementById('charades-timer');
+    if (el) {
+      el.textContent = charadesState.timerSeconds;
+      if (charadesState.timerSeconds <= 10) el.classList.add('urgent');
+    }
+    if (charadesState.timerSeconds <= 0) endCharades();
+  }, 1000);
+}
+
+function renderCharadesGame() {
+  const word = charadesState.words[charadesState.currentIndex] || '—';
+  const cat = charadesState.category === 'all' ? detectCharadesCategory(word) : charadesState.category;
+  screens.charades.innerHTML = `
+    <div style="padding:16px 16px 30px;max-width:480px;margin:0 auto;display:flex;flex-direction:column;min-height:100vh;">
+      <div class="charades-header">
+        <div style="text-align:center;">
+          <div style="font-size:0.7rem;color:#c4b5fd;font-weight:700;text-transform:uppercase;letter-spacing:.08em;">TIME</div>
+          <div class="charades-timer-val${charadesState.timerSeconds <= 10 ? ' urgent' : ''}" id="charades-timer">${charadesState.timerSeconds}</div>
+        </div>
+        <div style="font-size:1.1rem;font-weight:900;color:#e9d5ff;">🎭 Charades</div>
+        <div style="text-align:center;">
+          <div style="font-size:0.7rem;color:#c4b5fd;font-weight:700;text-transform:uppercase;letter-spacing:.08em;">SCORE</div>
+          <div style="font-size:1.6rem;font-weight:900;color:#a78bfa;" id="charades-score-val">${charadesState.score}</div>
+        </div>
+      </div>
+      <div class="charades-word-card" id="charades-word-card">
+        <div class="charades-word" id="charades-word">${word}</div>
+        <span class="charades-category-pill ${cat}">${cat}</span>
+      </div>
+      <div class="charades-tilt-hint">
+        <div class="tilt-hint-card correct-hint">
+          <span class="tilt-hint-icon">✅</span>
+          <strong>Got It!</strong><br>Tilt screen DOWN
+        </div>
+        <div class="tilt-hint-card skip-hint">
+          <span class="tilt-hint-icon">❌</span>
+          <strong>Skip</strong><br>Tilt screen UP
+        </div>
+      </div>
+      <div class="charades-buttons">
+        <button class="btn-charades-skip"    onclick="charadesSkip()">❌ SKIP</button>
+        <button class="btn-charades-correct" onclick="charadesCorrect()">✅ GOT IT!</button>
+      </div>
+    </div>`;
+}
+
+function detectCharadesCategory(word) {
+  for (const [cat, words] of Object.entries(CHARADES_WORDS)) {
+    if (words.includes(word)) return cat;
+  }
+  return 'silly';
+}
+
+function charadesHandleOrientation(e) {
+  if (charadesState.tiltCooldown || charadesState.timerSeconds <= 0) return;
+  const beta = e.beta;
+  if (beta === null) return;
+  if (beta > 50)   { charadesCorrect(true); }
+  else if (beta < -20) { charadesSkip(true); }
+}
+
+function charadesCorrect(fromTilt = false) {
+  if (charadesState.timerSeconds <= 0) return;
+  charadesState.score++;
+  charadesState.currentIndex++;
+  charadesState.tiltCooldown = true;
+  setTimeout(() => { charadesState.tiltCooldown = false; }, 1200);
+  const scoreEl = document.getElementById('charades-score-val');
+  if (scoreEl) scoreEl.textContent = charadesState.score;
+  if (fromTilt) {
+    const card = document.getElementById('charades-word-card');
+    if (card) {
+      card.style.background = 'linear-gradient(135deg, rgba(52,211,153,0.4), rgba(16,185,129,0.5))';
+      setTimeout(() => { if (card) card.style.background = ''; }, 500);
+    }
+  }
+  if (charadesState.currentIndex >= charadesState.words.length) { endCharades(); return; }
+  charadesNextWord();
+}
+
+function charadesSkip(fromTilt = false) {
+  if (charadesState.timerSeconds <= 0) return;
+  charadesState.skipped++;
+  charadesState.currentIndex++;
+  charadesState.tiltCooldown = true;
+  setTimeout(() => { charadesState.tiltCooldown = false; }, 1200);
+  if (fromTilt) {
+    const card = document.getElementById('charades-word-card');
+    if (card) {
+      card.style.background = 'linear-gradient(135deg, rgba(248,113,113,0.4), rgba(239,68,68,0.5))';
+      setTimeout(() => { if (card) card.style.background = ''; }, 500);
+    }
+  }
+  if (charadesState.currentIndex >= charadesState.words.length) { endCharades(); return; }
+  charadesNextWord();
+}
+
+function charadesNextWord() {
+  const word = charadesState.words[charadesState.currentIndex] || '—';
+  const cat = charadesState.category === 'all' ? detectCharadesCategory(word) : charadesState.category;
+  const wordEl = document.getElementById('charades-word');
+  const pillEl = document.querySelector('.charades-category-pill');
+  if (wordEl) {
+    wordEl.style.opacity = '0';
+    wordEl.style.transform = 'translateY(-8px)';
+    setTimeout(() => {
+      wordEl.textContent = word;
+      wordEl.style.transition = 'opacity 0.2s, transform 0.2s';
+      wordEl.style.opacity = '1';
+      wordEl.style.transform = 'translateY(0)';
+    }, 150);
+  }
+  if (pillEl) { pillEl.className = `charades-category-pill ${cat}`; pillEl.textContent = cat; }
+}
+
+function endCharades() {
+  clearInterval(charadesState.timerInterval);
+  window.removeEventListener('deviceorientation', charadesHandleOrientation);
+  const total = charadesState.score + charadesState.skipped;
+  const pct = total > 0 ? Math.round((charadesState.score / total) * 100) : 0;
+  let medal = '🥉';
+  if (pct >= 80) medal = '🥇';
+  else if (pct >= 50) medal = '🥈';
+  screens.charades.innerHTML = `
+    <div style="padding:30px 16px 40px;max-width:480px;margin:0 auto;text-align:center;">
+      <button class="back-btn" style="display:block;margin-bottom:20px;" onclick="showScreen('start')">← Back to Home</button>
+      <div style="font-size:5rem;margin:10px 0;">${medal}</div>
+      <h2 style="font-size:2rem;font-weight:900;color:#e9d5ff;margin-bottom:20px;">Time's Up!</h2>
+      <div style="background:rgba(255,255,255,0.08);border-radius:16px;padding:16px;margin-bottom:10px;font-size:1.1rem;color:#c4b5fd;">
+        ✅ Got It! &nbsp; <strong style="color:#fff;font-size:1.4rem;">${charadesState.score}</strong> words
+      </div>
+      <div style="background:rgba(255,255,255,0.08);border-radius:16px;padding:16px;margin-bottom:10px;font-size:1.1rem;color:#c4b5fd;">
+        ❌ Skipped &nbsp; <strong style="color:#fff;font-size:1.4rem;">${charadesState.skipped}</strong> words
+      </div>
+      <div style="background:rgba(255,255,255,0.08);border-radius:16px;padding:16px;margin-bottom:20px;font-size:1.1rem;color:#c4b5fd;">
+        🎯 Accuracy &nbsp; <strong style="color:#ffd700;font-size:1.4rem;">${pct}%</strong>
+      </div>
+      <button class="btn-primary" onclick="startCharades()">🔄 Play Again</button>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════
+// ===== SNAKE GAME =====
+// ═══════════════════════════════════════════════════════
+
+const snakeState = {
+  canvas: null, ctx: null, cells: 20, cellSize: 0,
+  snake: [], dir: { x: 1, y: 0 }, nextDir: { x: 1, y: 0 },
+  food: { x: 0, y: 0 }, score: 0,
+  highScore: parseInt(localStorage.getItem('snakeHigh') || '0'),
+  running: false, loopTimeout: null, touchStart: null, gameOver: false
+};
+
+function startSnakeGame() {
+  showScreen('snake');
+  screens.snake.innerHTML = `
+    <div style="padding:20px 16px 30px;max-width:480px;margin:0 auto;text-align:center;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;margin-top:6px;">
+        <button class="back-btn" onclick="exitSnake()">← Back</button>
+        <span class="mode-title-badge" style="background:rgba(52,211,153,0.15);color:#34d399;border-color:rgba(52,211,153,0.3);">🐍 Snake</span>
+      </div>
+      <div style="font-size:4rem;margin:10px 0;">🐍</div>
+      <h2 style="font-size:2rem;font-weight:900;color:#34d399;margin-bottom:8px;">Snake!</h2>
+      <p style="color:#6ee7b7;margin-bottom:16px;">Eat food to grow. Don't hit walls or yourself!</p>
+      <p style="color:#9ca3af;font-size:0.9rem;margin-bottom:20px;">Swipe or use D-pad to steer</p>
+      <div style="color:#9ca3af;margin-bottom:20px;">🏆 Best: <strong style="color:#fbbf24">${snakeState.highScore}</strong></div>
+      <button class="btn-primary" onclick="initSnake()">▶ Start Game</button>
+    </div>`;
+}
+
+function exitSnake() {
+  clearTimeout(snakeState.loopTimeout);
+  snakeState.running = false;
+  document.removeEventListener('keydown', snakeKeyDown);
+  showScreen('start');
+}
+
+function initSnake() {
+  const canvasSize = Math.min(window.innerWidth - 32, 320);
+  screens.snake.innerHTML = `
+    <div style="max-width:480px;margin:0 auto;display:flex;flex-direction:column;align-items:center;padding:10px 16px 20px;">
+      <div class="snake-header" style="width:100%;max-width:${canvasSize}px;">
+        <div class="snake-score-box"><div class="s-label">SCORE</div><div class="s-value" id="snake-score">0</div></div>
+        <button class="back-btn" style="font-size:0.85rem;padding:8px 12px;" onclick="exitSnake()">← Home</button>
+        <div class="snake-score-box"><div class="s-label">BEST</div><div class="s-value" id="snake-high">${snakeState.highScore}</div></div>
+      </div>
+      <div class="snake-canvas-wrap" id="snake-canvas-wrap" style="width:${canvasSize}px;height:${canvasSize}px;">
+        <canvas id="snake-canvas" width="${canvasSize}" height="${canvasSize}"></canvas>
+      </div>
+      <div class="dpad-grid">
+        <div class="dpad-blank"></div>
+        <button class="dpad-btn" ontouchstart="e=>{e.preventDefault();dpadPress('up')}" onclick="dpadPress('up')">▲</button>
+        <div class="dpad-blank"></div>
+        <button class="dpad-btn" ontouchstart="e=>{e.preventDefault();dpadPress('left')}" onclick="dpadPress('left')">◀</button>
+        <div class="dpad-blank"></div>
+        <button class="dpad-btn" ontouchstart="e=>{e.preventDefault();dpadPress('right')}" onclick="dpadPress('right')">▶</button>
+        <div class="dpad-blank"></div>
+        <button class="dpad-btn" ontouchstart="e=>{e.preventDefault();dpadPress('down')}" onclick="dpadPress('down')">▼</button>
+        <div class="dpad-blank"></div>
+      </div>
+    </div>`;
+
+  snakeState.canvas = document.getElementById('snake-canvas');
+  snakeState.ctx = snakeState.canvas.getContext('2d');
+  snakeState.cellSize = canvasSize / snakeState.cells;
+  snakeState.score = 0;
+  snakeState.dir = { x: 1, y: 0 };
+  snakeState.nextDir = { x: 1, y: 0 };
+  snakeState.gameOver = false;
+  snakeState.running = true;
+
+  const mid = Math.floor(snakeState.cells / 2);
+  snakeState.snake = [{ x: mid, y: mid }, { x: mid-1, y: mid }, { x: mid-2, y: mid }];
+  snakePlaceFood();
+
+  snakeState.canvas.addEventListener('touchstart', snakeTouchStart, { passive: true });
+  snakeState.canvas.addEventListener('touchend',   snakeTouchEnd,   { passive: true });
+  document.addEventListener('keydown', snakeKeyDown);
+
+  // D-pad buttons — use proper event listeners
+  document.querySelectorAll('.dpad-btn').forEach(btn => {
+    btn.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+      const dir = this.getAttribute('data-dir');
+      if (dir) dpadPress(dir);
+    }, { passive: false });
+  });
+
+  snakeLoop();
+}
+
+function snakeGetSpeed() {
+  if (snakeState.score >= 200) return 80;
+  if (snakeState.score >= 100) return 110;
+  if (snakeState.score >= 50)  return 140;
+  return 180;
+}
+
+function snakeLoop() {
+  if (!snakeState.running) return;
+  snakeState.dir = { ...snakeState.nextDir };
+  const head = { x: snakeState.snake[0].x + snakeState.dir.x, y: snakeState.snake[0].y + snakeState.dir.y };
+  if (head.x < 0 || head.x >= snakeState.cells || head.y < 0 || head.y >= snakeState.cells) { snakeGameOver(); return; }
+  if (snakeState.snake.some(seg => seg.x === head.x && seg.y === head.y)) { snakeGameOver(); return; }
+  snakeState.snake.unshift(head);
+  if (head.x === snakeState.food.x && head.y === snakeState.food.y) {
+    snakeState.score += 10;
+    const scoreEl = document.getElementById('snake-score');
+    if (scoreEl) scoreEl.textContent = snakeState.score;
+    if (snakeState.score > snakeState.highScore) {
+      snakeState.highScore = snakeState.score;
+      localStorage.setItem('snakeHigh', snakeState.highScore);
+      const highEl = document.getElementById('snake-high');
+      if (highEl) highEl.textContent = snakeState.highScore;
+    }
+    snakePlaceFood();
+  } else {
+    snakeState.snake.pop();
+  }
+  snakeDraw();
+  snakeState.loopTimeout = setTimeout(snakeLoop, snakeGetSpeed());
+}
+
+function snakePlaceFood() {
+  let pos;
+  do {
+    pos = { x: Math.floor(Math.random() * snakeState.cells), y: Math.floor(Math.random() * snakeState.cells) };
+  } while (snakeState.snake.some(s => s.x === pos.x && s.y === pos.y));
+  snakeState.food = pos;
+}
+
+function snakeDraw() {
+  const { ctx, canvas, cellSize: cs, cells } = snakeState;
+  ctx.fillStyle = '#0a0a0f';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = 'rgba(52,211,153,0.05)';
+  for (let x = 0; x < cells; x++) for (let y = 0; y < cells; y++) {
+    ctx.beginPath(); ctx.arc(x * cs + cs/2, y * cs + cs/2, 1, 0, Math.PI*2); ctx.fill();
+  }
+  ctx.font = `${Math.round(cs * 0.72)}px serif`;
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText('🍎', snakeState.food.x * cs + cs/2, snakeState.food.y * cs + cs/2);
+  snakeState.snake.forEach((seg, i) => {
+    const x = seg.x * cs, y = seg.y * cs, pad = 2, r = 4;
+    const fade = Math.max(0.3, 1 - i * 0.03);
+    const grad = ctx.createLinearGradient(x, y, x+cs, y+cs);
+    if (i === 0) { grad.addColorStop(0, '#6ee7b7'); grad.addColorStop(1, '#34d399'); }
+    else { grad.addColorStop(0, `rgba(52,211,153,${fade})`); grad.addColorStop(1, `rgba(16,185,129,${fade*0.7})`); }
+    ctx.fillStyle = grad;
+    const rx = x+pad, ry = y+pad, rw = cs-pad*2, rh = cs-pad*2;
+    ctx.beginPath();
+    ctx.moveTo(rx+r, ry); ctx.lineTo(rx+rw-r, ry); ctx.quadraticCurveTo(rx+rw, ry, rx+rw, ry+r);
+    ctx.lineTo(rx+rw, ry+rh-r); ctx.quadraticCurveTo(rx+rw, ry+rh, rx+rw-r, ry+rh);
+    ctx.lineTo(rx+r, ry+rh); ctx.quadraticCurveTo(rx, ry+rh, rx, ry+rh-r);
+    ctx.lineTo(rx, ry+r); ctx.quadraticCurveTo(rx, ry, rx+r, ry); ctx.closePath(); ctx.fill();
+    if (i === 0) {
+      ctx.fillStyle = '#0a0a0f';
+      const es = cs * 0.11;
+      ctx.beginPath(); ctx.arc(x+cs*0.32, y+cs*0.3, es, 0, Math.PI*2); ctx.fill();
+      ctx.beginPath(); ctx.arc(x+cs*0.68, y+cs*0.3, es, 0, Math.PI*2); ctx.fill();
+    }
+  });
+}
+
+function snakeGameOver() {
+  snakeState.running = false;
+  clearTimeout(snakeState.loopTimeout);
+  document.removeEventListener('keydown', snakeKeyDown);
+  const wrap = document.getElementById('snake-canvas-wrap');
+  if (!wrap) return;
+  const overlay = document.createElement('div');
+  overlay.className = 'snake-overlay';
+  overlay.innerHTML = `
+    <div style="font-size:3rem;margin-bottom:8px;">💀</div>
+    <h2 style="color:#fff;font-size:1.8rem;font-weight:900;margin-bottom:8px;">Game Over!</h2>
+    <div style="color:#6ee7b7;margin-bottom:6px;">Score: <strong style="color:#fff">${snakeState.score}</strong></div>
+    <div style="color:#fbbf24;margin-bottom:20px;">Best: <strong>${snakeState.highScore}</strong></div>
+    <button class="btn-primary" onclick="initSnake()">▶ Play Again</button>
+    <button class="back-btn" style="margin-top:12px;" onclick="exitSnake()">← Home</button>`;
+  wrap.appendChild(overlay);
+}
+
+function dpadPress(dir) {
+  const { x, y } = snakeState.dir;
+  if (dir === 'up'    && y === 0)  snakeState.nextDir = { x:  0, y: -1 };
+  if (dir === 'down'  && y === 0)  snakeState.nextDir = { x:  0, y:  1 };
+  if (dir === 'left'  && x === 0)  snakeState.nextDir = { x: -1, y:  0 };
+  if (dir === 'right' && x === 0)  snakeState.nextDir = { x:  1, y:  0 };
+}
+
+function snakeKeyDown(e) {
+  const map = { ArrowUp:'up', ArrowDown:'down', ArrowLeft:'left', ArrowRight:'right', w:'up', s:'down', a:'left', d:'right' };
+  if (map[e.key]) { e.preventDefault(); dpadPress(map[e.key]); }
+}
+
+function snakeTouchStart(e) {
+  const t = e.touches[0];
+  snakeState.touchStart = { x: t.clientX, y: t.clientY };
+}
+
+function snakeTouchEnd(e) {
+  if (!snakeState.touchStart) return;
+  const t = e.changedTouches[0];
+  const dx = t.clientX - snakeState.touchStart.x;
+  const dy = t.clientY - snakeState.touchStart.y;
+  if (Math.abs(dx) < 10 && Math.abs(dy) < 10) return;
+  if (Math.abs(dx) > Math.abs(dy)) { dpadPress(dx > 0 ? 'right' : 'left'); }
+  else { dpadPress(dy > 0 ? 'down' : 'up'); }
+  snakeState.touchStart = null;
+}
+
+// ═══════════════════════════════════════════════════════
+// ===== MEMORY MATCH GAME =====
+// ═══════════════════════════════════════════════════════
+
+const MEMORY_EMOJIS = ['🐶','🐱','🐭','🐹','🐰','🦊','🐻','🐼','🐨','🐯','🦁','🐮','🐸','🐵','🐔','🐧','🦋','🌟','🍕','🎸','🚀','🌈','🍦','🎈'];
+
+const memoryState = {
+  cards: [], flipped: [], matched: new Set(),
+  attempts: 0, startTime: null, timerInterval: null,
+  locked: false, difficulty: 'easy'
+};
+
+function startMemory() {
+  showScreen('memory');
+  screens.memory.innerHTML = `
+    <div style="padding:30px 16px 40px;max-width:480px;margin:0 auto;text-align:center;">
+      <button class="back-btn" style="display:block;margin-bottom:20px;" onclick="showScreen('start')">← Back to Home</button>
+      <div style="font-size:4rem;margin:10px 0;">🃏</div>
+      <h2 style="font-size:1.8rem;font-weight:900;color:#93c5fd;margin-bottom:8px;">Memory Match</h2>
+      <p style="color:#bfdbfe;margin-bottom:24px;">Flip cards to find matching pairs!</p>
+      <button class="memory-diff-btn easy" onclick="initMemory('easy')">😊 Easy — 4×3 (6 pairs)</button>
+      <button class="memory-diff-btn hard" onclick="initMemory('hard')">🔥 Hard — 4×4 (8 pairs)</button>
+    </div>`;
+}
+
+function initMemory(difficulty) {
+  memoryState.difficulty = difficulty;
+  memoryState.flipped = [];
+  memoryState.matched = new Set();
+  memoryState.attempts = 0;
+  memoryState.locked = false;
+  clearInterval(memoryState.timerInterval);
+
+  const pairs = difficulty === 'easy' ? 6 : 8;
+  const cols  = 4;
+  const rows  = difficulty === 'easy' ? 3 : 4;
+  const chosen = MEMORY_EMOJIS.slice(0, pairs);
+  let deck = [...chosen, ...chosen];
+  for (let i = deck.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [deck[i], deck[j]] = [deck[j], deck[i]];
+  }
+  memoryState.cards = deck.map((emoji, idx) => ({ id: idx, emoji }));
+
+  screens.memory.innerHTML = `
+    <div style="padding:10px 16px 20px;max-width:480px;margin:0 auto;">
+      <div class="memory-header">
+        <div class="memory-stat"><div class="m-label">PAIRS</div><div class="m-value" id="mem-pairs">0/${pairs}</div></div>
+        <div class="memory-stat"><div class="m-label">TIME</div><div class="m-value" id="mem-time">0s</div></div>
+        <div class="memory-stat"><div class="m-label">TRIES</div><div class="m-value" id="mem-tries">0</div></div>
+      </div>
+      <div class="memory-grid ${difficulty}" id="memory-grid">
+        ${deck.map((emoji, idx) => `
+          <div class="memory-card" id="mc-${idx}" onclick="memoryFlip(${idx})">
+            <div class="memory-card-inner">
+              <div class="memory-card-front">❓</div>
+              <div class="memory-card-back">${emoji}</div>
+            </div>
+          </div>`).join('')}
+      </div>
+      <div style="text-align:center;padding:10px 0;">
+        <button class="back-btn" onclick="startMemory()">← Change Difficulty</button>
+      </div>
+    </div>`;
+
+  memoryState.startTime = Date.now();
+  memoryState.timerInterval = setInterval(() => {
+    const el = document.getElementById('mem-time');
+    if (el) el.textContent = Math.floor((Date.now() - memoryState.startTime) / 1000) + 's';
+  }, 1000);
+}
+
+function memoryFlip(idx) {
+  if (memoryState.locked || memoryState.matched.has(idx) || memoryState.flipped.includes(idx)) return;
+  document.getElementById(`mc-${idx}`).classList.add('flipped');
+  memoryState.flipped.push(idx);
+  if (memoryState.flipped.length === 2) {
+    memoryState.locked = true;
+    memoryState.attempts++;
+    const triesEl = document.getElementById('mem-tries');
+    if (triesEl) triesEl.textContent = memoryState.attempts;
+    const [a, b] = memoryState.flipped;
+    if (memoryState.cards[a].emoji === memoryState.cards[b].emoji) {
+      memoryState.matched.add(a); memoryState.matched.add(b);
+      document.getElementById(`mc-${a}`).classList.add('matched');
+      document.getElementById(`mc-${b}`).classList.add('matched');
+      memoryState.flipped = [];
+      memoryState.locked = false;
+      const pairs = memoryState.difficulty === 'easy' ? 6 : 8;
+      const pairsEl = document.getElementById('mem-pairs');
+      if (pairsEl) pairsEl.textContent = `${memoryState.matched.size / 2}/${pairs}`;
+      if (memoryState.matched.size === pairs * 2) setTimeout(memoryWin, 400);
+    } else {
+      setTimeout(() => {
+        document.getElementById(`mc-${a}`)?.classList.remove('flipped');
+        document.getElementById(`mc-${b}`)?.classList.remove('flipped');
+        memoryState.flipped = [];
+        memoryState.locked = false;
+      }, 1000);
+    }
+  }
+}
+
+function memoryWin() {
+  clearInterval(memoryState.timerInterval);
+  const elapsed = Math.floor((Date.now() - memoryState.startTime) / 1000);
+  const pairs = memoryState.difficulty === 'easy' ? 6 : 8;
+  let stars = '⭐⭐⭐';
+  if (memoryState.attempts > pairs * 2.5) stars = '⭐⭐';
+  if (memoryState.attempts > pairs * 4)   stars = '⭐';
+  screens.memory.innerHTML = `
+    <div style="padding:40px 16px;max-width:480px;margin:0 auto;text-align:center;">
+      <button class="back-btn" style="display:block;margin-bottom:20px;" onclick="showScreen('start')">← Back to Home</button>
+      <div style="font-size:5rem;margin:10px 0;">🎉</div>
+      <h2 style="font-size:2rem;font-weight:900;color:#93c5fd;margin-bottom:8px;">You Win!</h2>
+      <div style="font-size:2rem;margin-bottom:16px;">${stars}</div>
+      <div style="background:rgba(255,255,255,0.08);border-radius:16px;padding:14px;margin-bottom:10px;color:#bfdbfe;">⏱ Time &nbsp; <strong style="color:#fff">${elapsed}s</strong></div>
+      <div style="background:rgba(255,255,255,0.08);border-radius:16px;padding:14px;margin-bottom:10px;color:#bfdbfe;">🎯 Attempts &nbsp; <strong style="color:#fff">${memoryState.attempts}</strong></div>
+      <div style="background:rgba(255,255,255,0.08);border-radius:16px;padding:14px;margin-bottom:20px;color:#bfdbfe;">🃏 Pairs &nbsp; <strong style="color:#34d399">${pairs}/${pairs} ✓</strong></div>
+      <button class="btn-primary" onclick="initMemory('${memoryState.difficulty}')">🔄 Play Again</button>
+      <button class="btn-secondary" style="margin-top:10px;" onclick="startMemory()">Change Difficulty</button>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════
+// ===== BALLOON POP GAME =====
+// ═══════════════════════════════════════════════════════
+
+const BALLOON_EMOJIS_LIST = ['🎈','🎈','🎈','🎈','🎆','🎇','🪅','🎊'];
+const balloonState = {
+  score: 0, combo: 0, timeLeft: 30,
+  timerInterval: null, spawnInterval: null, running: false, nextId: 0
+};
+
+function startBalloonPop() {
+  showScreen('balloon');
+  screens.balloon.innerHTML = `
+    <div style="padding:40px 16px;max-width:480px;margin:0 auto;text-align:center;min-height:100vh;background:linear-gradient(180deg,#0c1445,#1a237e);">
+      <button class="back-btn" style="display:block;margin-bottom:20px;" onclick="showScreen('start')">← Back to Home</button>
+      <div style="font-size:3.5rem;margin:10px 0;">🎈🎈🎈</div>
+      <h2 style="font-size:1.8rem;font-weight:900;color:#fca5a5;margin-bottom:8px;">Balloon Pop!</h2>
+      <p style="color:#fecaca;margin-bottom:20px;line-height:1.6;">Tap balloons before they escape!<br>
+        <span style="color:#fbbf24;">🎈 Balloon = +10 pts</span><br>
+        <span style="color:#f87171;">💣 Bomb = -20 pts!</span><br>
+        Combos multiply your score!</p>
+      <button class="btn-primary" onclick="initBalloonPop()">▶ Let's Pop!</button>
+    </div>`;
+}
+
+function initBalloonPop() {
+  balloonState.score = 0;
+  balloonState.combo = 0;
+  balloonState.timeLeft = 30;
+  balloonState.running = true;
+  balloonState.nextId = 0;
+  clearInterval(balloonState.timerInterval);
+  clearInterval(balloonState.spawnInterval);
+
+  screens.balloon.innerHTML = `
+    <div style="padding:10px 16px;max-width:480px;margin:0 auto;">
+      <div class="balloon-hud">
+        <div class="balloon-hud-stat"><div class="b-label">SCORE</div><div class="b-value" id="balloon-score">0</div></div>
+        <div class="balloon-hud-stat"><div class="b-label">TIME</div><div class="b-value" id="balloon-time">30</div></div>
+        <div class="balloon-hud-stat"><div class="b-label">COMBO</div><div class="b-value combo" id="balloon-combo">x1</div></div>
+      </div>
+    </div>
+    <div id="balloon-field"></div>`;
+
+  balloonState.timerInterval = setInterval(() => {
+    if (!balloonState.running) return;
+    balloonState.timeLeft--;
+    const el = document.getElementById('balloon-time');
+    if (el) el.textContent = balloonState.timeLeft;
+    if (balloonState.timeLeft <= 0) endBalloonPop();
+  }, 1000);
+
+  balloonState.spawnInterval = setInterval(() => {
+    if (!balloonState.running) return;
+    const elapsed = 30 - balloonState.timeLeft;
+    const rate = Math.min(3, 1 + Math.floor(elapsed / 8));
+    for (let i = 0; i < rate; i++) setTimeout(() => spawnBalloon(), i * 350);
+  }, 1300);
+
+  spawnBalloon();
+}
+
+function spawnBalloon() {
+  if (!balloonState.running) return;
+  const field = document.getElementById('balloon-field');
+  if (!field) return;
+  const isBomb = Math.random() < 0.12;
+  const emoji = isBomb ? '💣' : BALLOON_EMOJIS_LIST[Math.floor(Math.random() * BALLOON_EMOJIS_LIST.length)];
+  const id = balloonState.nextId++;
+  const fieldW = field.clientWidth || 320;
+  const left = 10 + Math.random() * (fieldW - 70);
+  const duration = 3.5 + Math.random() * 2.5;
+
+  const el = document.createElement('div');
+  el.className = 'balloon-item';
+  el.id = `balloon-${id}`;
+  el.textContent = emoji;
+  el.style.cssText = `left:${left}px;bottom:-60px;animation-duration:${duration}s;`;
+
+  const pop = () => {
+    if (!el.parentNode || el.classList.contains('popped')) return;
+    el.classList.add('popped');
+    const rect = el.getBoundingClientRect();
+    const fieldRect = field.getBoundingClientRect();
+    const floatEl = document.createElement('div');
+    floatEl.className = 'balloon-score-float';
+    floatEl.style.left = (rect.left - fieldRect.left + 10) + 'px';
+    floatEl.style.top  = (rect.top  - fieldRect.top  - 10) + 'px';
+    if (isBomb) {
+      balloonState.score = Math.max(0, balloonState.score - 20);
+      balloonState.combo = 0;
+      floatEl.textContent = '-20 💥';
+      floatEl.style.color = '#f87171';
+    } else {
+      balloonState.combo++;
+      const mult = Math.min(balloonState.combo, 5);
+      const pts = 10 * mult;
+      balloonState.score += pts;
+      floatEl.textContent = `+${pts}${mult > 1 ? ' x' + mult : ''}`;
+      floatEl.style.color = mult > 1 ? '#fbbf24' : '#6ee7b7';
+    }
+    field.appendChild(floatEl);
+    setTimeout(() => { if (floatEl.parentNode) floatEl.parentNode.removeChild(floatEl); }, 900);
+    const scoreEl = document.getElementById('balloon-score');
+    const comboEl = document.getElementById('balloon-combo');
+    if (scoreEl) scoreEl.textContent = balloonState.score;
+    if (comboEl) comboEl.textContent = `x${Math.min(balloonState.combo, 5) || 1}`;
+    setTimeout(() => { if (el.parentNode) el.parentNode.removeChild(el); }, 400);
+  };
+
+  el.addEventListener('click', pop);
+  el.addEventListener('touchstart', (e) => { e.preventDefault(); pop(); }, { passive: false });
+  field.appendChild(el);
+  setTimeout(() => {
+    if (el.parentNode) {
+      el.parentNode.removeChild(el);
+      if (!isBomb) { balloonState.combo = 0; const c = document.getElementById('balloon-combo'); if (c) c.textContent = 'x1'; }
+    }
+  }, duration * 1000);
+}
+
+function endBalloonPop() {
+  balloonState.running = false;
+  clearInterval(balloonState.timerInterval);
+  clearInterval(balloonState.spawnInterval);
+  let rank = '🐌 Slow Popper';
+  if (balloonState.score >= 300)      rank = '🏆 Balloon Master!';
+  else if (balloonState.score >= 150) rank = '⭐ Great Popper!';
+  else if (balloonState.score >= 80)  rank = '👍 Good Job!';
+  screens.balloon.innerHTML = `
+    <div style="padding:40px 16px;text-align:center;min-height:100vh;background:linear-gradient(180deg,#0c1445,#1a237e);">
+      <button class="back-btn" style="display:block;margin-bottom:20px;" onclick="showScreen('start')">← Back to Home</button>
+      <div style="font-size:4rem;margin:10px 0;">🎈</div>
+      <h2 style="font-size:2rem;font-weight:900;color:#fca5a5;margin-bottom:8px;">Time's Up!</h2>
+      <div style="font-size:1.3rem;color:#fecaca;margin-bottom:20px;">${rank}</div>
+      <div style="background:rgba(255,255,255,0.1);border-radius:16px;padding:20px;margin-bottom:20px;">
+        <div style="font-size:0.85rem;color:#fca5a5;text-transform:uppercase;letter-spacing:.1em;">Final Score</div>
+        <div style="font-size:3rem;font-weight:900;color:#fbbf24;">${balloonState.score}</div>
+      </div>
+      <button class="btn-primary" style="background:linear-gradient(135deg,#f87171,#ef4444);" onclick="initBalloonPop()">🎈 Pop Again!</button>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════
+// ===== REACTION TEST GAME =====
+// ═══════════════════════════════════════════════════════
+
+const reactionState = {
+  phase: 'idle', round: 0, totalRounds: 5,
+  times: [], waitTimeout: null, startTime: null
+};
+
+function startReaction() {
+  showScreen('reaction');
+  reactionState.phase = 'idle';
+  reactionState.round = 0;
+  reactionState.times = [];
+  clearTimeout(reactionState.waitTimeout);
+
+  screens.reaction.innerHTML = `
+    <div style="padding:16px;max-width:480px;margin:0 auto;display:flex;flex-direction:column;min-height:100vh;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <button class="back-btn" onclick="exitReaction()">← Back</button>
+        <span style="font-size:0.9rem;font-weight:700;color:#c4b5fd;" id="reaction-round-label">Round 0/${reactionState.totalRounds}</span>
+      </div>
+      <div id="reaction-pad" class="idle" onclick="reactionTap()">
+        <span class="reaction-emoji-big">⚡</span>
+        <div class="reaction-main-text">Tap to Start!</div>
+        <div class="reaction-sub-text">Test your reaction speed — ${reactionState.totalRounds} rounds</div>
+      </div>
+    </div>`;
+}
+
+function exitReaction() {
+  clearTimeout(reactionState.waitTimeout);
+  reactionState.phase = 'idle';
+  showScreen('start');
+}
+
+function reactionTap() {
+  const phase = reactionState.phase;
+  if (phase === 'idle') { reactionBeginRound(); return; }
+  if (phase === 'waiting') {
+    clearTimeout(reactionState.waitTimeout);
+    reactionState.phase = 'toosoon';
+    const pad = document.getElementById('reaction-pad');
+    if (pad) {
+      pad.className = 'toosoon';
+      pad.innerHTML = `<span class="reaction-emoji-big">😬</span><div class="reaction-main-text">Too Soon!</div><div class="reaction-sub-text">Wait for green... Tap to try again</div>`;
+    }
+    reactionState.waitTimeout = setTimeout(() => reactionBeginRound(), 1800);
+    return;
+  }
+  if (phase === 'ready') {
+    const elapsed = Date.now() - reactionState.startTime;
+    reactionState.times.push(elapsed);
+    reactionState.phase = 'idle';
+    const pad = document.getElementById('reaction-pad');
+    if (pad) {
+      pad.className = 'idle';
+      pad.innerHTML = `<span class="reaction-emoji-big">✅</span><div class="reaction-main-text">${elapsed} ms</div><div class="reaction-sub-text">Round ${reactionState.round}/${reactionState.totalRounds} — Tap for next</div>`;
+    }
+    const lbl = document.getElementById('reaction-round-label');
+    if (lbl) lbl.textContent = `Round ${reactionState.round}/${reactionState.totalRounds}`;
+    if (reactionState.round >= reactionState.totalRounds) { setTimeout(reactionShowResults, 1200); }
+    else { reactionState.waitTimeout = setTimeout(() => reactionBeginRound(), 1200); }
+  }
+}
+
+function reactionBeginRound() {
+  if (reactionState.round >= reactionState.totalRounds) { reactionShowResults(); return; }
+  reactionState.round++;
+  reactionState.phase = 'waiting';
+  const delay = 2000 + Math.random() * 4000;
+  const pad = document.getElementById('reaction-pad');
+  if (pad) {
+    pad.className = 'waiting';
+    pad.innerHTML = `<span class="reaction-emoji-big">🔴</span><div class="reaction-main-text">Get Ready...</div><div class="reaction-sub-text">Round ${reactionState.round}/${reactionState.totalRounds} — Wait for GREEN!</div>`;
+  }
+  const lbl = document.getElementById('reaction-round-label');
+  if (lbl) lbl.textContent = `Round ${reactionState.round}/${reactionState.totalRounds}`;
+  reactionState.waitTimeout = setTimeout(() => {
+    reactionState.phase = 'ready';
+    reactionState.startTime = Date.now();
+    const p = document.getElementById('reaction-pad');
+    if (p) {
+      p.className = 'ready';
+      p.innerHTML = `<span class="reaction-emoji-big">🟢</span><div class="reaction-main-text">TAP NOW!</div><div class="reaction-sub-text">GO GO GO!</div>`;
+    }
+  }, delay);
+}
+
+function reactionShowResults() {
+  clearTimeout(reactionState.waitTimeout);
+  reactionState.phase = 'done';
+  const times = reactionState.times;
+  if (!times.length) { startReaction(); return; }
+  const avg = Math.round(times.reduce((a, b) => a + b, 0) / times.length);
+  const best = Math.min(...times);
+  let rank, rankColor;
+  if (avg < 200)      { rank = '⚡ Lightning Fast!'; rankColor = '#fbbf24'; }
+  else if (avg < 350) { rank = '🚀 Super Fast!';     rankColor = '#34d399'; }
+  else if (avg < 500) { rank = '👍 Average Speed';   rankColor = '#60a5fa'; }
+  else                { rank = '🐢 Keep Practicing'; rankColor = '#f87171'; }
+
+  screens.reaction.innerHTML = `
+    <div style="padding:16px;max-width:480px;margin:0 auto;min-height:100vh;overflow-y:auto;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+        <button class="back-btn" onclick="exitReaction()">← Back</button>
+        <span style="font-size:0.9rem;font-weight:700;color:#c4b5fd;">${times.length}/${reactionState.totalRounds} rounds</span>
+      </div>
+      <div style="text-align:center;margin-bottom:20px;">
+        <div style="font-size:1.8rem;font-weight:900;color:${rankColor};margin-bottom:6px;">${rank}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
+        ${times.map((t, i) => `<div class="reaction-result-row"><span>Round ${i+1}</span><span class="reaction-ms">${t} ms</span></div>`).join('')}
+        <div class="reaction-result-row" style="background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.25);">
+          <span>⚡ Average</span><span class="reaction-ms">${avg} ms</span>
+        </div>
+        <div class="reaction-result-row" style="background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.25);">
+          <span>🏆 Best</span><span class="reaction-ms">${best} ms</span>
+        </div>
+      </div>
+      <button class="btn-primary" onclick="startReaction()">🔄 Try Again</button>
+    </div>`;
 }
 
 // ===== INIT =====
