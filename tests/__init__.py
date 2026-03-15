@@ -1,6 +1,6 @@
 import unittest
 
-from breeze_test import BreezeApiTestCase
+from tests.breeze_test import BreezeApiTestCase
 
 
 def all_tests():
