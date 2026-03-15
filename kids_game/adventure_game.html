@@ -9,6 +9,7 @@
   <style>
 /* ===== RESET & BASE ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+button { touch-action: manipulation; }
 
 html, body {
   height: 100%;
@@ -506,11 +507,6 @@ html, body {
       <div class="mode-info"><span class="mode-title">Math Challenge</span><span class="mode-desc">Beat the clock with numbers!</span></div>
       <span class="mode-arrow">→</span>
     </button>
-    <button class="mode-card mode-trophy" onclick="showAchievements()">
-      <span class="mode-emoji">🏆</span>
-      <div class="mode-info"><span class="mode-title">Trophy Room</span><span class="mode-desc">See all your endings found</span></div>
-      <span class="mode-arrow">→</span>
-    </button>
     <button class="mode-card mode-charades" onclick="startCharades()">
       <span class="mode-emoji">🎭</span>
       <div class="mode-info"><span class="mode-title">Charades</span><span class="mode-desc">Tilt phone to guess words!</span></div>
@@ -534,6 +530,11 @@ html, body {
     <button class="mode-card mode-reaction" onclick="startReaction()">
       <span class="mode-emoji">⚡</span>
       <div class="mode-info"><span class="mode-title">Reaction Test</span><span class="mode-desc">How fast can you tap?</span></div>
+      <span class="mode-arrow">→</span>
+    </button>
+    <button class="mode-card mode-trophy" onclick="showAchievements()">
+      <span class="mode-emoji">🏆</span>
+      <div class="mode-info"><span class="mode-title">Trophy Room</span><span class="mode-desc">High scores &amp; story endings</span></div>
       <span class="mode-arrow">→</span>
     </button>
   </div>
@@ -1151,16 +1152,74 @@ function renderAchievements() {
   const earned = getAchievements();
   const total = ACHIEVEMENT_IDS.length;
   const screen = screens.achievements;
+
+  // Mini-game records from localStorage
+  const snakeHigh     = localStorage.getItem('snakeHigh')          || '—';
+  const charadesHigh  = localStorage.getItem('charadesHigh')        || '—';
+  const balloonHigh   = localStorage.getItem('balloonHigh')          || '—';
+  const memoryEasy    = localStorage.getItem('memoryBest_easy');
+  const memoryHard    = localStorage.getItem('memoryBest_hard');
+  const memoryWins    = localStorage.getItem('memoryWins')           || '0';
+  const reactionAvg   = localStorage.getItem('reactionBestAvg');
+  const reactionBest  = localStorage.getItem('reactionBest');
+
+  const fmtMs = v => v ? `${v} ms` : '—';
+  const fmtSec = v => v ? `${v}s` : '—';
+  const fmtPts = v => v !== '—' ? `${v} pts` : '—';
+
   let html = `
     <div class="ach-header">
       <button class="back-btn" onclick="showScreen('start')">← Back</button>
-      <h2 class="ach-title">🏆 Your Trophies</h2>
+      <h2 class="ach-title">🏆 Trophy Room</h2>
     </div>
-    <p class="ach-subtitle">${earned.length} / ${total} endings found!</p>
-    <div class="ach-progress-bar"><div class="ach-progress-fill" style="width:${Math.round(earned.length/total*100)}%"></div></div>
+
+    <div class="ach-story-section" style="width:100%;">
+      <h3 class="ach-story-title">🎮 Mini Game Records</h3>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.06);border-radius:12px;padding:12px 14px;">
+          <span>🐍 Snake High Score</span>
+          <strong style="color:#34d399;">${fmtPts(snakeHigh)}</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.06);border-radius:12px;padding:12px 14px;">
+          <span>🎭 Charades Best</span>
+          <strong style="color:#a78bfa;">${charadesHigh !== '—' ? charadesHigh + ' words' : '—'}</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.06);border-radius:12px;padding:12px 14px;">
+          <span>🎈 Balloon Pop Best</span>
+          <strong style="color:#f87171;">${fmtPts(balloonHigh)}</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.06);border-radius:12px;padding:12px 14px;">
+          <span>🃏 Memory Wins</span>
+          <strong style="color:#60a5fa;">${memoryWins} win${memoryWins === '1' ? '' : 's'}</strong>
+        </div>
+        ${memoryEasy ? `<div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);border-radius:12px;padding:10px 14px 10px 28px;">
+          <span style="color:#9ca3af;font-size:.9rem;">Easy Best Time</span>
+          <strong style="color:#34d399;font-size:.9rem;">${fmtSec(memoryEasy)}</strong>
+        </div>` : ''}
+        ${memoryHard ? `<div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);border-radius:12px;padding:10px 14px 10px 28px;">
+          <span style="color:#9ca3af;font-size:.9rem;">Hard Best Time</span>
+          <strong style="color:#f87171;font-size:.9rem;">${fmtSec(memoryHard)}</strong>
+        </div>` : ''}
+        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.06);border-radius:12px;padding:12px 14px;">
+          <span>⚡ Reaction Best Avg</span>
+          <strong style="color:#fbbf24;">${fmtMs(reactionAvg)}</strong>
+        </div>
+        ${reactionBest ? `<div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);border-radius:12px;padding:10px 14px 10px 28px;">
+          <span style="color:#9ca3af;font-size:.9rem;">Single Best Tap</span>
+          <strong style="color:#fbbf24;font-size:.9rem;">${fmtMs(reactionBest)}</strong>
+        </div>` : ''}
+      </div>
+    </div>
+
+    <div class="ach-story-section" style="width:100%;margin-top:8px;">
+      <h3 class="ach-story-title">📖 Story Endings</h3>
+      <p class="ach-subtitle" style="margin-bottom:10px;">${earned.length} / ${total} found!</p>
+      <div class="ach-progress-bar"><div class="ach-progress-fill" style="width:${Math.round(earned.length/total*100)}%"></div></div>
+    </div>
   `;
+
   Object.values(STORIES).forEach(story => {
-    html += `<div class="ach-story-section"><h3 class="ach-story-title">${story.title}</h3><div class="ach-grid">`;
+    html += `<div class="ach-story-section" style="width:100%;"><h3 class="ach-story-title">${story.title}</h3><div class="ach-grid">`;
     Object.entries(story.nodes).forEach(([id, node]) => {
       if (!node.isEnding) return;
       const key = `${story.id}:${id}`;
@@ -2061,6 +2120,9 @@ function charadesNextWord() {
 function endCharades() {
   clearInterval(charadesState.timerInterval);
   window.removeEventListener('deviceorientation', charadesHandleOrientation);
+  // Save high score
+  const prevBest = parseInt(localStorage.getItem('charadesHigh') || '0');
+  if (charadesState.score > prevBest) localStorage.setItem('charadesHigh', charadesState.score);
   const total = charadesState.score + charadesState.skipped;
   const pct = total > 0 ? Math.round((charadesState.score / total) * 100) : 0;
   let medal = '🥉';
@@ -2222,9 +2284,24 @@ function snakeDraw() {
   for (let x = 0; x < cells; x++) for (let y = 0; y < cells; y++) {
     ctx.beginPath(); ctx.arc(x * cs + cs/2, y * cs + cs/2, 1, 0, Math.PI*2); ctx.fill();
   }
-  ctx.font = `${Math.round(cs * 0.72)}px serif`;
-  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-  ctx.fillText('🍎', snakeState.food.x * cs + cs/2, snakeState.food.y * cs + cs/2);
+  // Draw apple as canvas shapes (emoji unreliable on mobile canvas)
+  const fx = snakeState.food.x * cs + cs/2;
+  const fy = snakeState.food.y * cs + cs/2;
+  const r = cs * 0.36;
+  // Red apple body
+  ctx.fillStyle = '#ef4444';
+  ctx.beginPath(); ctx.arc(fx, fy + r*0.1, r, 0, Math.PI*2); ctx.fill();
+  // Shine
+  ctx.fillStyle = 'rgba(255,255,255,0.35)';
+  ctx.beginPath(); ctx.ellipse(fx - r*0.25, fy - r*0.2, r*0.22, r*0.14, -0.5, 0, Math.PI*2); ctx.fill();
+  // Stem
+  ctx.strokeStyle = '#854d0e';
+  ctx.lineWidth = Math.max(1.5, cs * 0.08);
+  ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(fx, fy - r + 1); ctx.quadraticCurveTo(fx + r*0.4, fy - r - r*0.5, fx + r*0.2, fy - r - r*0.6); ctx.stroke();
+  // Leaf
+  ctx.fillStyle = '#16a34a';
+  ctx.beginPath(); ctx.ellipse(fx + r*0.28, fy - r - r*0.25, r*0.22, r*0.1, 0.6, 0, Math.PI*2); ctx.fill();
   snakeState.snake.forEach((seg, i) => {
     const x = seg.x * cs, y = seg.y * cs, pad = 2, r = 4;
     const fade = Math.max(0.3, 1 - i * 0.03);
@@ -2400,6 +2477,12 @@ function memoryFlip(idx) {
 function memoryWin() {
   clearInterval(memoryState.timerInterval);
   const elapsed = Math.floor((Date.now() - memoryState.startTime) / 1000);
+  // Save best time per difficulty
+  const key = `memoryBest_${memoryState.difficulty}`;
+  const prev = parseInt(localStorage.getItem(key) || '99999');
+  if (elapsed < prev) localStorage.setItem(key, elapsed);
+  const wins = parseInt(localStorage.getItem('memoryWins') || '0');
+  localStorage.setItem('memoryWins', wins + 1);
   const pairs = memoryState.difficulty === 'easy' ? 6 : 8;
   let stars = '⭐⭐⭐';
   if (memoryState.attempts > pairs * 2.5) stars = '⭐⭐';
@@ -2543,6 +2626,9 @@ function endBalloonPop() {
   balloonState.running = false;
   clearInterval(balloonState.timerInterval);
   clearInterval(balloonState.spawnInterval);
+  // Save high score
+  const prevBest = parseInt(localStorage.getItem('balloonHigh') || '0');
+  if (balloonState.score > prevBest) localStorage.setItem('balloonHigh', balloonState.score);
   let rank = '🐌 Slow Popper';
   if (balloonState.score >= 300)      rank = '🏆 Balloon Master!';
   else if (balloonState.score >= 150) rank = '⭐ Great Popper!';
@@ -2657,6 +2743,11 @@ function reactionShowResults() {
   if (!times.length) { startReaction(); return; }
   const avg = Math.round(times.reduce((a, b) => a + b, 0) / times.length);
   const best = Math.min(...times);
+  // Save best average
+  const prevAvg = parseInt(localStorage.getItem('reactionBestAvg') || '99999');
+  if (avg < prevAvg) localStorage.setItem('reactionBestAvg', avg);
+  const prevBest = parseInt(localStorage.getItem('reactionBest') || '99999');
+  if (best < prevBest) localStorage.setItem('reactionBest', best);
   let rank, rankColor;
   if (avg < 200)      { rank = '⚡ Lightning Fast!'; rankColor = '#fbbf24'; }
   else if (avg < 350) { rank = '🚀 Super Fast!';     rankColor = '#34d399'; }
